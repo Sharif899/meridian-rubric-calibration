@@ -1,0 +1,6 @@
+{
+  "id": "KB-WEB-01",
+  "title": "Webhooks",
+  "area": "technical_troubleshooting",
+  "body": "A webhook endpoint must return HTTP 200 within 5 seconds. Failed deliveries are retried 3 times over 15 minutes, then not retried automatically. Events can be replayed from the dashboard, and a replay re-sends with the same signature. Requests are signed with HMAC-SHA256 over the raw request body, in the X-Meridian-Signature header. A common mistake is verifying the parsed JSON instead of the raw body. Event types: shipment.created, shipment.delivered, invoice.paid."
+}

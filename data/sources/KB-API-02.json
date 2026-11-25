@@ -1,0 +1,6 @@
+{
+  "id": "KB-API-02",
+  "title": "API rate limits",
+  "area": "technical_troubleshooting",
+  "body": "The API allows 100 requests per minute per API key. A 429 response means the rate limit was hit. Clients should reduce the batch size to 80 requests per minute and add exponential backoff starting at 500 ms. Retries count toward the limit, so retrying immediately makes it worse. Limits can be raised by asking support; there is no self-serve way to disable the limiter."
+}

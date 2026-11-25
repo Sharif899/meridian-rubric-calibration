@@ -1,0 +1,6 @@
+{
+  "id": "KB-TRK-01",
+  "title": "Shipment tracking",
+  "area": "customer_support",
+  "body": "Tracking updates every 6 hours. 'In transit' means the shipment has departed the origin hub. The delivery estimate is shown in the dashboard and updates with every scan. If there is no tracking update for 48 hours, support opens a trace. A trace takes 2 business days."
+}

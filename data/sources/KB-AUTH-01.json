@@ -1,0 +1,6 @@
+{
+  "id": "KB-AUTH-01",
+  "title": "Authentication",
+  "area": "technical_troubleshooting",
+  "body": "A 401 response means the token is invalid or expired; access tokens expire after 24 hours and are refreshed with the refresh token. A 403 response means the API key lacks the required scope. Scopes are listed in Settings > API; creating shipments requires the shipments:write scope."
+}

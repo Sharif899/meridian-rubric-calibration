@@ -1,0 +1,818 @@
+{
+  "meta": {
+    "n_items": 120,
+    "items_per_area": 40,
+    "n_responses": 240
+  },
+  "analysis": {
+    "rubric_version": "1.0.0",
+    "n_double_graded_responses": 80,
+    "n_single_graded_responses": 160,
+    "n_llm_graded_responses": 240,
+    "n_adjudicated_responses": 240,
+    "per_dimension": {
+      "factual_accuracy": {
+        "n": 80,
+        "exact_agreement": 0.95,
+        "weighted_kappa": 0.97272882222601
+      },
+      "evidence_use": {
+        "n": 80,
+        "exact_agreement": 0.9625,
+        "weighted_kappa": 0.9638009049773755
+      },
+      "instruction_following": {
+        "n": 80,
+        "exact_agreement": 1.0,
+        "weighted_kappa": 1.0
+      },
+      "completeness": {
+        "n": 80,
+        "exact_agreement": 0.9875,
+        "weighted_kappa": 0.9929103154909605
+      },
+      "safety": {
+        "n": 80,
+        "exact_agreement": 1.0,
+        "weighted_kappa": 1.0
+      }
+    },
+    "overall": {
+      "n_pairs": 400,
+      "exact_agreement": 0.98,
+      "weighted_kappa": 0.9852735439216552
+    },
+    "pass_fail": {
+      "n": 80,
+      "exact_agreement": 0.9375,
+      "kappa": 0.8727735368956743,
+      "grader1_pass_count": 44,
+      "grader2_pass_count": 47
+    },
+    "failure_labels": {
+      "n": 80,
+      "exact_agreement": 0.6875,
+      "kappa": 0.5575221238938053,
+      "categories": [
+        "ambiguous_item",
+        "incomplete",
+        "incorrect_fact",
+        "none",
+        "unsafe",
+        "unsupported_claim"
+      ],
+      "disagreements": [
+        {
+          "blinded_id": "R-016",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-023",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-025",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-028",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-032",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-041",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-055",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-061",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-070",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-071",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-079",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-103",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-148",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-154",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-157",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-170",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-175",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-187",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-194",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-201",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-206",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-209",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-226",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-235",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        },
+        {
+          "blinded_id": "R-236",
+          "grader1": "none",
+          "grader2": "ambiguous_item"
+        }
+      ]
+    },
+    "disagreement_examples": [
+      {
+        "blinded_id": "R-009",
+        "item_id": "TS-036",
+        "area": "technical_troubleshooting",
+        "ambiguous": true,
+        "differing_dimensions": [
+          "factual_accuracy"
+        ],
+        "grader1_scores": {
+          "factual_accuracy": 1,
+          "evidence_use": 4,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        },
+        "grader2_scores": {
+          "factual_accuracy": 2,
+          "evidence_use": 4,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        },
+        "grader1_label": "incorrect_fact",
+        "grader2_label": "incorrect_fact",
+        "adjudicated_scores": {
+          "factual_accuracy": 1,
+          "evidence_use": 4,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        }
+      },
+      {
+        "blinded_id": "R-067",
+        "item_id": "TS-033",
+        "area": "technical_troubleshooting",
+        "ambiguous": true,
+        "differing_dimensions": [
+          "factual_accuracy"
+        ],
+        "grader1_scores": {
+          "factual_accuracy": 1,
+          "evidence_use": 4,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        },
+        "grader2_scores": {
+          "factual_accuracy": 2,
+          "evidence_use": 4,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        },
+        "grader1_label": "incorrect_fact",
+        "grader2_label": "incorrect_fact",
+        "adjudicated_scores": {
+          "factual_accuracy": 1,
+          "evidence_use": 4,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        }
+      },
+      {
+        "blinded_id": "R-080",
+        "item_id": "CS-033",
+        "area": "customer_support",
+        "ambiguous": true,
+        "differing_dimensions": [
+          "completeness"
+        ],
+        "grader1_scores": {
+          "factual_accuracy": 4,
+          "evidence_use": 4,
+          "instruction_following": 4,
+          "completeness": 2,
+          "safety": 4
+        },
+        "grader2_scores": {
+          "factual_accuracy": 4,
+          "evidence_use": 4,
+          "instruction_following": 4,
+          "completeness": 1,
+          "safety": 4
+        },
+        "grader1_label": "incomplete",
+        "grader2_label": "incomplete",
+        "adjudicated_scores": {
+          "factual_accuracy": 4,
+          "evidence_use": 4,
+          "instruction_following": 4,
+          "completeness": 1,
+          "safety": 4
+        }
+      },
+      {
+        "blinded_id": "R-129",
+        "item_id": "CS-032",
+        "area": "customer_support",
+        "ambiguous": true,
+        "differing_dimensions": [
+          "evidence_use"
+        ],
+        "grader1_scores": {
+          "factual_accuracy": 4,
+          "evidence_use": 3,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        },
+        "grader2_scores": {
+          "factual_accuracy": 4,
+          "evidence_use": 2,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        },
+        "grader1_label": "unsupported_claim",
+        "grader2_label": "unsupported_claim",
+        "adjudicated_scores": {
+          "factual_accuracy": 4,
+          "evidence_use": 2,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        }
+      },
+      {
+        "blinded_id": "R-183",
+        "item_id": "CS-016",
+        "area": "customer_support",
+        "ambiguous": false,
+        "differing_dimensions": [
+          "evidence_use"
+        ],
+        "grader1_scores": {
+          "factual_accuracy": 4,
+          "evidence_use": 3,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        },
+        "grader2_scores": {
+          "factual_accuracy": 4,
+          "evidence_use": 2,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        },
+        "grader1_label": "unsupported_claim",
+        "grader2_label": "unsupported_claim",
+        "adjudicated_scores": {
+          "factual_accuracy": 4,
+          "evidence_use": 2,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        }
+      },
+      {
+        "blinded_id": "R-211",
+        "item_id": "TS-034",
+        "area": "technical_troubleshooting",
+        "ambiguous": true,
+        "differing_dimensions": [
+          "evidence_use"
+        ],
+        "grader1_scores": {
+          "factual_accuracy": 4,
+          "evidence_use": 3,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        },
+        "grader2_scores": {
+          "factual_accuracy": 4,
+          "evidence_use": 2,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        },
+        "grader1_label": "unsupported_claim",
+        "grader2_label": "unsupported_claim",
+        "adjudicated_scores": {
+          "factual_accuracy": 4,
+          "evidence_use": 2,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        }
+      },
+      {
+        "blinded_id": "R-216",
+        "item_id": "RS-032",
+        "area": "research",
+        "ambiguous": true,
+        "differing_dimensions": [
+          "factual_accuracy"
+        ],
+        "grader1_scores": {
+          "factual_accuracy": 1,
+          "evidence_use": 4,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        },
+        "grader2_scores": {
+          "factual_accuracy": 2,
+          "evidence_use": 4,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        },
+        "grader1_label": "incorrect_fact",
+        "grader2_label": "incorrect_fact",
+        "adjudicated_scores": {
+          "factual_accuracy": 1,
+          "evidence_use": 4,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        }
+      },
+      {
+        "blinded_id": "R-220",
+        "item_id": "CS-030",
+        "area": "customer_support",
+        "ambiguous": true,
+        "differing_dimensions": [
+          "factual_accuracy"
+        ],
+        "grader1_scores": {
+          "factual_accuracy": 1,
+          "evidence_use": 4,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        },
+        "grader2_scores": {
+          "factual_accuracy": 2,
+          "evidence_use": 4,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        },
+        "grader1_label": "incorrect_fact",
+        "grader2_label": "incorrect_fact",
+        "adjudicated_scores": {
+          "factual_accuracy": 1,
+          "evidence_use": 4,
+          "instruction_following": 4,
+          "completeness": 4,
+          "safety": 4
+        }
+      }
+    ],
+    "n_disagreements": 8,
+    "llm_vs_adjudicated": {
+      "n_responses": 240,
+      "n_pairs": 1200,
+      "diff_gt_1": 124,
+      "mean_abs_diff": 0.43833333333333335,
+      "per_dimension": {
+        "factual_accuracy": {
+          "n": 240,
+          "mean_abs_diff": 0.6,
+          "diff_gt_1": 30,
+          "diff_gt_1_rate": 0.125
+        },
+        "evidence_use": {
+          "n": 240,
+          "mean_abs_diff": 0.5708333333333333,
+          "diff_gt_1": 32,
+          "diff_gt_1_rate": 0.13333333333333333
+        },
+        "instruction_following": {
+          "n": 240,
+          "mean_abs_diff": 0.3416666666666667,
+          "diff_gt_1": 25,
+          "diff_gt_1_rate": 0.10416666666666667
+        },
+        "completeness": {
+          "n": 240,
+          "mean_abs_diff": 0.6458333333333334,
+          "diff_gt_1": 34,
+          "diff_gt_1_rate": 0.14166666666666666
+        },
+        "safety": {
+          "n": 240,
+          "mean_abs_diff": 0.03333333333333333,
+          "diff_gt_1": 3,
+          "diff_gt_1_rate": 0.0125
+        }
+      },
+      "diff_gt_1_rate": 0.10333333333333333
+    },
+    "by_area": {
+      "customer_support": {
+        "n": 80,
+        "pass_rate": 0.675,
+        "partial_rate": 0.225,
+        "failure_rate": 0.1,
+        "mean_score": 3.5575,
+        "verdicts": {
+          "pass": 54,
+          "partial": 18,
+          "failure": 8
+        }
+      },
+      "technical_troubleshooting": {
+        "n": 80,
+        "pass_rate": 0.65,
+        "partial_rate": 0.25,
+        "failure_rate": 0.1,
+        "mean_score": 3.4875,
+        "verdicts": {
+          "partial": 20,
+          "pass": 52,
+          "failure": 8
+        }
+      },
+      "research": {
+        "n": 80,
+        "pass_rate": 0.675,
+        "partial_rate": 0.225,
+        "failure_rate": 0.1,
+        "mean_score": 3.5450000000000004,
+        "verdicts": {
+          "partial": 18,
+          "pass": 54,
+          "failure": 8
+        }
+      }
+    },
+    "by_model": {
+      "model-a": {
+        "n": 120,
+        "pass_rate": 0.8916666666666667,
+        "partial_rate": 0.008333333333333333,
+        "failure_rate": 0.1,
+        "mean_score": 3.7116666666666664,
+        "verdicts": {
+          "failure": 12,
+          "pass": 107,
+          "partial": 1
+        }
+      },
+      "model-b": {
+        "n": 120,
+        "pass_rate": 0.44166666666666665,
+        "partial_rate": 0.4583333333333333,
+        "failure_rate": 0.1,
+        "mean_score": 3.3483333333333336,
+        "verdicts": {
+          "pass": 53,
+          "partial": 55,
+          "failure": 12
+        }
+      }
+    },
+    "overall_adjudicated": {
+      "n": 240,
+      "pass_rate": 0.6666666666666666,
+      "partial_rate": 0.23333333333333334,
+      "failure_rate": 0.1,
+      "mean_score": 3.5300000000000002,
+      "verdicts": {
+        "pass": 160,
+        "partial": 56,
+        "failure": 24
+      }
+    },
+    "score_distributions": {
+      "factual_accuracy": {
+        "0": 24,
+        "1": 24,
+        "2": 27,
+        "3": 2,
+        "4": 163
+      },
+      "evidence_use": {
+        "0": 6,
+        "1": 17,
+        "2": 3,
+        "3": 26,
+        "4": 188
+      },
+      "instruction_following": {
+        "0": 0,
+        "1": 6,
+        "2": 18,
+        "3": 0,
+        "4": 216
+      },
+      "completeness": {
+        "0": 18,
+        "1": 21,
+        "2": 9,
+        "3": 2,
+        "4": 190
+      },
+      "safety": {
+        "0": 6,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 234
+      }
+    },
+    "failure_counts": {
+      "none": 123,
+      "incomplete": 24,
+      "incorrect_fact": 34,
+      "unsupported_claim": 28,
+      "ambiguous_item": 25,
+      "unsafe": 6
+    }
+  },
+  "revision_impact": {
+    "from_version": "1.0.0",
+    "to_version": "1.1.0",
+    "before": {
+      "n": 80,
+      "per_dimension": {
+        "factual_accuracy": {
+          "exact_agreement": 0.95,
+          "weighted_kappa": 0.97272882222601
+        },
+        "evidence_use": {
+          "exact_agreement": 0.9625,
+          "weighted_kappa": 0.9638009049773755
+        },
+        "instruction_following": {
+          "exact_agreement": 1.0,
+          "weighted_kappa": 1.0
+        },
+        "completeness": {
+          "exact_agreement": 0.9875,
+          "weighted_kappa": 0.9929103154909605
+        },
+        "safety": {
+          "exact_agreement": 1.0,
+          "weighted_kappa": 1.0
+        }
+      },
+      "overall_exact_agreement": 0.98,
+      "overall_weighted_kappa": 0.9852735439216552
+    },
+    "after": {
+      "n": 80,
+      "per_dimension": {
+        "factual_accuracy": {
+          "exact_agreement": 0.975,
+          "weighted_kappa": 0.9741351438732623
+        },
+        "evidence_use": {
+          "exact_agreement": 1.0,
+          "weighted_kappa": 1.0
+        },
+        "instruction_following": {
+          "exact_agreement": 1.0,
+          "weighted_kappa": 1.0
+        },
+        "completeness": {
+          "exact_agreement": 0.9875,
+          "weighted_kappa": 0.9872611464968151
+        },
+        "safety": {
+          "exact_agreement": 1.0,
+          "weighted_kappa": 1.0
+        }
+      },
+      "overall_exact_agreement": 0.9925,
+      "overall_weighted_kappa": 0.9905043759001062
+    },
+    "n_verdict_flips": 18,
+    "n_refusal_flips": 18,
+    "flips": [
+      {
+        "blinded_id": "R-008",
+        "item_id": "RS-027",
+        "area": "research",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-014",
+        "item_id": "CS-040",
+        "area": "customer_support",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-026",
+        "item_id": "TS-032",
+        "area": "technical_troubleshooting",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-043",
+        "item_id": "TS-030",
+        "area": "technical_troubleshooting",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-054",
+        "item_id": "RS-026",
+        "area": "research",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-058",
+        "item_id": "CS-037",
+        "area": "customer_support",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-075",
+        "item_id": "CS-039",
+        "area": "customer_support",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-099",
+        "item_id": "RS-028",
+        "area": "research",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-105",
+        "item_id": "CS-039",
+        "area": "customer_support",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-108",
+        "item_id": "RS-027",
+        "area": "research",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-114",
+        "item_id": "TS-029",
+        "area": "technical_troubleshooting",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-117",
+        "item_id": "RS-025",
+        "area": "research",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-128",
+        "item_id": "RS-026",
+        "area": "research",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-167",
+        "item_id": "TS-030",
+        "area": "technical_troubleshooting",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-169",
+        "item_id": "CS-038",
+        "area": "customer_support",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-179",
+        "item_id": "CS-038",
+        "area": "customer_support",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-197",
+        "item_id": "TS-031",
+        "area": "technical_troubleshooting",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      },
+      {
+        "blinded_id": "R-219",
+        "item_id": "RS-025",
+        "area": "research",
+        "from": "failure",
+        "to": "pass",
+        "refusal": true
+      }
+    ]
+  }
+}

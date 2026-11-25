@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Meridian reviewer</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 960px; margin: 2rem auto; padding: 0 1rem; color: #1c1a17; }
+  h1 { font-size: 1.5rem; }
+  .row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  label { font-weight: 600; font-size: 0.9rem; }
+  select, input, textarea { padding: 0.4rem; font-size: 0.95rem; }
+  textarea { width: 100%; min-height: 4rem; }
+  .item { border: 1px solid #ccc; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 0.75rem; cursor: pointer; }
+  .item.selected { border-color: #1d5c3f; background: #f2f7f4; }
+  .meta { color: #555; font-size: 0.85rem; }
+  .response { background: #faf9f6; border-left: 3px solid #1d5c3f; padding: 0.75rem 1rem; margin: 0.75rem 0; }
+  .reference { background: #f4f4f4; border-left: 3px solid #888; padding: 0.75rem 1rem; margin: 0.75rem 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; }
+  button { background: #1d5c3f; color: #fff; border: none; padding: 0.6rem 1.2rem; font-size: 1rem; cursor: pointer; border-radius: 4px; }
+  button:hover { background: #174a33; }
+  .judgment { border-top: 1px solid #ddd; padding: 0.5rem 0; font-size: 0.9rem; }
+  #status { color: #1d5c3f; font-weight: 600; }
+</style>
+</head>
+<body>
+<h1>Meridian reviewer</h1>
+<p class="meta">Blinded human review. Model identity is never shown. Scores are recorded against the selected rubric version.</p>
+<p id="status">Loading…</p>
+
+<div class="row">
+  <label>Task area
+    <select id="area">
+      <option value="">All areas</option>
+      <option value="customer_support">Customer support</option>
+      <option value="technical_troubleshooting">Technical troubleshooting</option>
+      <option value="research">Research</option>
+    </select>
+  </label>
+  <label>Rubric version
+    <select id="rubricVersion"></select>
+  </label>
+  <label>Grader
+    <input id="grader" value="reviewer" size="12">
+  </label>
+</div>
+
+<div id="list"></div>
+
+<div id="detail" style="display:none">
+  <h2 id="detailTitle"></h2>
+  <p class="meta" id="detailMeta"></p>
+  <h3>Prompt</h3>
+  <p id="detailPrompt"></p>
+  <h3>Response (blinded)</h3>
+  <div class="response" id="detailResponse"></div>
+  <h3>Reference answer</h3>
+  <div class="reference" id="detailReference"></div>
+  <h3>Source evidence</h3>
+  <div id="detailSources"></div>
+  <h3>Rubric anchors</h3>
+  <div id="detailAnchors"></div>
+  <h3>Your judgment</h3>
+  <div class="grid" id="scoreInputs"></div>
+  <p><label>Evidence note<br><textarea id="evidenceNote"></textarea></label></p>
+  <p><label>Failure label
+    <select id="failureLabel">
+      <option value="none">none</option>
+      <option value="unsupported_claim">unsupported_claim</option>
+      <option value="incomplete">incomplete</option>
+      <option value="incorrect_fact">incorrect_fact</option>
+      <option value="unsafe">unsafe</option>
+      <option value="refusal_error">refusal_error</option>
+      <option value="ambiguous_item">ambiguous_item</option>
+    </select>
+  </label></p>
+  <button id="submitBtn">Submit judgment</button>
+  <p id="submitStatus"></p>
+  <h3>Existing judgments</h3>
+  <div id="judgments"></div>
+</div>
+
+<script>
+const DIMENSIONS = ["factual_accuracy", "evidence_use", "instruction_following", "completeness", "safety"];
+let rubrics = [];
+let items = [];
+let selected = null;
+
+async function load() {
+  const health = await (await fetch("/api/health")).json();
+  document.getElementById("status").textContent =
+    `Ready — ${health.items} items, ${health.responses} blinded responses, rubric versions ${health.rubric_versions.join(", ")}.`;
+  const r = await (await fetch("/api/rubrics")).json();
+  rubrics = r.rubrics;
+  const sel = document.getElementById("rubricVersion");
+  sel.innerHTML = rubrics.map(x => `<option value="${x.version}">${x.version}</option>`).join("");
+  await loadItems();
+}
+
+async function loadItems() {
+  const area = document.getElementById("area").value;
+  const url = area ? `/api/items?area=${area}` : "/api/items";
+  const data = await (await fetch(url)).json();
+  items = data.items;
+  const list = document.getElementById("list");
+  list.innerHTML = items.map(it => `
+    <div class="item" data-id="${it.blinded_id}">
+      <strong>${it.blinded_id}</strong> · ${it.item_id} · ${it.area}
+      <span class="meta">${it.difficulty}${it.ambiguous ? " · ambiguous" : ""}</span>
+      <div>${it.prompt}</div>
+    </div>`).join("");
+  list.querySelectorAll(".item").forEach(el => el.addEventListener("click", () => select(el.dataset.id)));
+}
+
+function rubricFor(version) {
+  return rubrics.find(r => r.version === version) || rubrics[0];
+}
+
+async function select(blindedId) {
+  selected = items.find(it => it.blinded_id === blindedId);
+  document.querySelectorAll(".item").forEach(el => el.classList.toggle("selected", el.dataset.id === blindedId));
+  const detail = document.getElementById("detail");
+  detail.style.display = "block";
+  document.getElementById("detailTitle").textContent = `${selected.blinded_id} · ${selected.item_id}`;
+  document.getElementById("detailMeta").textContent = `${selected.area} · ${selected.difficulty}${selected.ambiguous ? " · flagged ambiguous" : ""}`;
+  document.getElementById("detailPrompt").textContent = selected.prompt;
+  document.getElementById("detailResponse").textContent = selected.response_text;
+  document.getElementById("detailReference").textContent = selected.reference_answer;
+  document.getElementById("detailSources").innerHTML = selected.sources.map(s =>
+    `<p><strong>${s.id} — ${s.title}</strong><br>${s.body}</p>`).join("");
+  const rubric = rubricFor(document.getElementById("rubricVersion").value);
+  document.getElementById("detailAnchors").innerHTML = rubric.dimensions.map(d => `
+    <p><strong>${d.name}</strong> — ${d.description}<br>
+    ${Object.entries(d.anchors).map(([s, t]) => `<strong>${s}:</strong> ${t}`).join("<br>")}</p>`).join("");
+  document.getElementById("scoreInputs").innerHTML = DIMENSIONS.map(d => `
+    <label>${d}<br><select data-dim="${d}">
+      ${[0,1,2,3,4].map(n => `<option value="${n}">${n}</option>`).join("")}
+    </select></label>`).join("");
+  document.getElementById("submitStatus").textContent = "";
+  await loadJudgments(blindedId);
+}
+
+async function loadJudgments(blindedId) {
+  const data = await (await fetch(`/api/judgments?blinded_id=${blindedId}`)).json();
+  document.getElementById("judgments").innerHTML = data.judgments.length
+    ? data.judgments.map(j => `<div class="judgment"><strong>${j.grader}</strong> · rubric ${j.rubric_version} · ${JSON.stringify(j.scores)} · ${j.failure_label}<br>${j.evidence_note}</div>`).join("")
+    : "<p>No judgments yet for this response.</p>";
+}
+
+document.getElementById("submitBtn").addEventListener("click", async () => {
+  const scores = {};
+  document.querySelectorAll("#scoreInputs select").forEach(el => scores[el.dataset.dim] = parseInt(el.value, 10));
+  const body = {
+    blinded_id: selected.blinded_id,
+    grader: document.getElementById("grader").value || "reviewer",
+    rubric_version: document.getElementById("rubricVersion").value,
+    scores,
+    evidence_note: document.getElementById("evidenceNote").value,
+    failure_label: document.getElementById("failureLabel").value,
+  };
+  const resp = await fetch("/api/judgments", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(body),
+  });
+  const status = document.getElementById("submitStatus");
+  if (resp.ok) {
+    status.textContent = "Judgment saved.";
+    await loadJudgments(selected.blinded_id);
+  } else {
+    const err = await resp.json();
+    status.textContent = "Error: " + (err.detail || resp.status);
+  }
+});
+
+document.getElementById("area").addEventListener("change", loadItems);
+document.getElementById("rubricVersion").addEventListener("change", () => { if (selected) select(selected.blinded_id); });
+load();
+</script>
+</body>
+</html>

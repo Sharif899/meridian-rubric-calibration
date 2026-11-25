@@ -1,0 +1,6 @@
+{
+  "id": "KB-SYN-01",
+  "title": "Dashboard sync",
+  "area": "technical_troubleshooting",
+  "body": "The dashboard refreshes every 15 minutes and has a manual refresh button. If dashboard data is older than 1 hour, check the sync status page. A sync failure with a 401 means the carrier connection needs to be re-authenticated."
+}

@@ -1,0 +1,6 @@
+{
+  "id": "POL-RET-01",
+  "title": "Data retention policy",
+  "area": "research",
+  "body": "Shipment records are kept for 7 years. Personal data is deleted 90 days after account closure. Audit logs are kept for 3 years and are not personal data. Deletion requests are answered within 30 days."
+}
